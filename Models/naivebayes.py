@@ -5,23 +5,23 @@ NB = MultinomialNB
 #NB = GaussianNB
 
 datakey = {
-    0: {"Near":0, "None":2, "Urgent":7},
-    1: {"Yes":8, "No":1},
-    2: {"Yes":8, "No":1}
+    0: {"Near":0, "None":1, "Urgent":2},
+    1: {"Yes":3, "No":4},
+    2: {"Yes":3, "No":4}
 }
 
 labelkey = {
-    "Party": 3,
-    "Pub": 4,
-    "Study": 5,
-    "TV": 6
+    "Party": 5,
+    "Pub": 6,
+    "Study": 7,
+    "TV": 8
 }
 
 rlabelkey = {
-    3: "Party",
-    4: "Pub",
-    5: "Study",
-    6: "TV"
+    5: "Party",
+    6: "Pub",
+    7: "Study",
+    8: "TV"
 }
 
 def wrapper_for_nb_in_sklearn(data, current_state_to_predict):
