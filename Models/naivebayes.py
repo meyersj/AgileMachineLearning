@@ -1,5 +1,7 @@
 from sklearn.naive_bayes import MultinomialNB, GaussianNB
 from sklearn import preprocessing
+import numpy as np
+from sklearn.preprocessing import LabelEncoder
 
 NB = MultinomialNB
 #NB = GaussianNB
@@ -23,6 +25,7 @@ rlabelkey = {
     7: "Study",
     8: "TV"
 }
+
 
 def wrapper_for_nb_in_sklearn(data, current_state_to_predict):
     """
@@ -69,3 +72,30 @@ def wrapper_for_nb_in_sklearn(data, current_state_to_predict):
     # convert prediction back to string
     return rlabelkey[pred[0]]
 
+<<<<<<< HEAD
+=======
+    # Convert inputs to arrays to leverage numpy's reshaping and indexing
+    data = np.array(data)
+    state_to_predict = np.array(current_state_to_predict).reshape((1, -1))
+
+    # Convert strs to ints for all Inputs:
+    le = LabelEncoder()
+    all_states = data.flatten()
+    le.fit(all_states)
+
+    intified_data = le.transform(data)
+    intified_state_to_predict = le.transform(state_to_predict)
+
+    # Pick out X and y from data:
+    X = intified_data[:, :-1]
+    y = data[:, -1]
+
+    # Create and train model:
+    clf = MultinomialNB(alpha=1., fit_prior=True,)
+    clf.fit(X, y)
+
+    # Predict for sample, and convert back to string:
+    predicted_state_as_str = clf.predict(intified_state_to_predict)[0]
+
+    return predicted_state_as_str
+>>>>>>> 539973641ef383b33a5d2027af2d65d97df328c4
