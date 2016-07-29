@@ -35,6 +35,7 @@ def wrapper_for_nb_in_sklearn(data, current_state_to_predict):
         Note that the last column of data is assumed to be the variable
     to predict, and the order
     """
+    """
     factors = [x[0:3] for x in data]
     states = [x[3] for x in data]
 
@@ -72,8 +73,8 @@ def wrapper_for_nb_in_sklearn(data, current_state_to_predict):
     # convert prediction back to string
     return rlabelkey[pred[0]]
 
-<<<<<<< HEAD
-=======
+    """
+
     # Convert inputs to arrays to leverage numpy's reshaping and indexing
     data = np.array(data)
     state_to_predict = np.array(current_state_to_predict).reshape((1, -1))
@@ -98,4 +99,3 @@ def wrapper_for_nb_in_sklearn(data, current_state_to_predict):
     predicted_state_as_str = clf.predict(intified_state_to_predict)[0]
 
     return predicted_state_as_str
->>>>>>> 539973641ef383b33a5d2027af2d65d97df328c4
